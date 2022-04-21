@@ -12,9 +12,8 @@
    <!-- Fontawesome -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
-   {% load static %}
+   
    <!-- Custom Css -->
-   <link rel="stylesheet" href="{% static 'styles.css' %}">
    
   </head>
   
@@ -23,7 +22,7 @@
      <div style="width:100vw; height:auto; background:#63e69b;">
        <i class="fa-solid fa-calendar-check fa-3x mt-3 float-start ms-4 ps-3"></i>
        <h1 class="text-dark text-center p-4 m-0">
-         Todo Web App
+         <span style="background-color: #212121; color: #63e69b; padding:10px; border-radius:10px;">Todo</span> | Web App
        </h1>
      </div>
      <!-- Navigation -->
@@ -32,7 +31,7 @@
         <a class="nav-link link-light" href="{% url 'home-page' %}">Home</a>
       </li>
       <li class="nav-item border-end">
-        <a class="nav-link link-light" href="{% url 'about-page' %}">My Profile</a>
+        <a class="nav-link link-light" href="{% url 'profile-page' %}">My Profile</a>
       </li>
       <li class="nav-item border-end">
         <a class="nav-link link-light" href="{% url 'about-page' %}">About</a>
