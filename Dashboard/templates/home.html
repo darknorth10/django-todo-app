@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="text-primary text-start my-4 mx-5">Todo Tasks</h2>
+  <!-- Task container -->
+  {% for post in posts %}
+    <h3 class="p-4 border border-3 shadow-md rounded-pill m-2 bg-light">{{ post.title }}</h3>
+   {% empty %}
+    <h1 class="opacity-50">There are currently no tasks</h1>
+  {% endfor %}
+  
+  <!-- Add new task modal -->
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input type="text" class="form-control border-3" id="post-title">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Content:</label>
+              <textarea class="form-control border-3" id="task-content"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-dark text-light fs-1 rounded-pill px-4 py-3 m-5 shadow-lg position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">New Task</button>
+  
+{% endblock %}
