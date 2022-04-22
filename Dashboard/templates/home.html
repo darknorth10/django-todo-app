@@ -1,13 +1,21 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
   <h2 class="text-primary text-start my-4 mx-5">Todo Tasks</h2>
   <!-- Task container -->
   {% for post in posts %}
-    <h3 class="p-4 border border-3 shadow-md rounded-pill m-2 bg-light">{{ post.title }}</h3>
-   {% empty %}
-    <h1 class="opacity-50">There are currently no tasks</h1>
+  {% if post.author == user %}
+    <div class="p-4 border border-3 shadow-sm rounded-3 m-3 bg-light" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+      <small class="text-muted float-start">{{ post.date_created }}</small>
+      <br>
+      <h3 class="">{{ post.title }}</h3>
+    </div>
+   {% else %}
+    <h1 class="d-none">There are currently no tasks</h1>
+  {% endif %}
   {% endfor %}
+    
+    
   
   <!-- Add new task modal -->
   
@@ -19,25 +27,49 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Title:</label>
-              <input type="text" class="form-control border-3" id="post-title">
+          <form method="post">
+            {% csrf_token %}
+            {{ form|crispy}}
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Task</button>
             </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Content:</label>
-              <textarea class="form-control border-3" id="task-content"></textarea>
-            </div>
+        
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for update and delete -->
+  
+  <div class="modal fade" id="exampleModal2" tabindex="-2" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save Task</button>
+          <button type="button" class="btn btn-danger">Delete Task</button>
+          
         </div>
       </div>
     </div>
   </div>
 
-  <button class="btn btn-dark text-light fs-1 rounded-pill px-4 py-3 m-5 shadow-lg position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">New Task</button>
+
+
+  <div class="modal-footer">
+      <button class="btn btn-dark text-light fs-3 rounded-3 px-4 py-3 m-5 shadow-lg position-relative bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">New Task</button>
+  </div>
+
   
 {% endblock %}

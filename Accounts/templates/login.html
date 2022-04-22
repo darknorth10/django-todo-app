@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 <!-- Register Form -->
 {% block content %}
-  <div class="container-sm my-5 mx-auto shadow-md border rounded-3 bg-white p-5">
+  <div class="container w-50 my-5 mx-auto shadow-md border rounded-3 bg-white p-5">
     <form action="" method="POST">
       {% csrf_token %}
       <legend class="p-2 m-1 text-center"><strong>Login your Account</strong></legend>
@@ -15,7 +15,7 @@
     </form>
   </div>
   
-  <div class="container-sm bg-white border rounded-3 p-3 text-center">
+  <div class="container w-50 bg-white border rounded-3 py-4 px-3 text-center">
     <p class="fs-4">Don't have account yet? click this to <a class="pe-auto" href="{% url 'register-page' %}">Register</a></p>
        
     </div>
