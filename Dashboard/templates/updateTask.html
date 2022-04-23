@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <h2 class="card-header bg-info text-white text-center py-3 mb-4 border-bottom border-2 shadow-sm">Update Task</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="modal-footer">
+      <button class="btn btn-dark p-3 m-2 fs-4" type="submit">Update Changes</button>
+    </div>
+  </form>
+{% endblock %}

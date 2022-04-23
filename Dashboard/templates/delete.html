@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="card-header bg-danger text-white text-center py-3 mb-4 border-bottom border-2 shadow-sm">Delete Task</h2>
+  <form class="pb-3 shadow" method="POST">
+    {% csrf_token %}
+    <h2 class="m-3">Do you really want to delete this task?</h2>
+
+    <button class="btn btn-danger fs-4 p-3 m-3 shadow-sm" type="submit">Yes, delete</button>
+    <a class="btn btn-secondary fs-4 p-3 m-3 shadow-sm" href="{% url 'home-page' %}">Cancel</a>
+  </form>
+{% endblock %}
