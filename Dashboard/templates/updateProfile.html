@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <h2 class="card-header bg-dark text-white text-center py-3 mb-4 border-bottom border-2 shadow-sm">Edit Profile</h2>
+  <form class="d-flex flex-column flex-space-between m-3 p-3" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form| crispy }}
+    {{ profile_form| crispy}}
+    <button class="btn btn-dark p-3 m-5" type="submit">Save Changes</button>
+  </form>
+{% endblock %}

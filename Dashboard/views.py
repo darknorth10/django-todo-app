@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Post
-from .forms import addTaskForm, updateTaskForm
+from .models import Post, Profile
+from .forms import addTaskForm, updateTaskForm, updateProfile, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -53,4 +53,25 @@ def delete_task(request, id):
   
 @login_required
 def profile(request):
-  return render(request, 'profile.html')
+  context = {
+    'profiles': Profile.objects.all(),
+  }
+  return render(request, 'profile.html', context)
+
+
+# update Profile
+def update_profile(request):
+  user_form = UserUpdateForm(request.POST, instance=request.user)
+  profile_form = updateProfile(request.POST, request.FILES, instance=request.user.profile)
+  if request.method == 'POST':
+    
+    if user_form.is_valid() and profile_form.is_valid():
+      user_form.save()
+      profile_form.save()
+      messages.success(request, 'Your profile is updated successfully')
+      return redirect(to='profile-page')
+    else:
+      user_form = UserUpdateForm(instance=request.user)
+      profile_form = updateProfile(instance=request.user.profile)
+  return render(request, 'updateProfile.html', {'user_form': user_form, 'profile_form': profile_form})
+  

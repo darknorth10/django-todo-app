@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container w-50">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body border">
-    <h5 class="card-title text-start">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+{% for profile in profiles %}
+{% if profile.user == user %}
+<div class="container border p-0">
+  <h2 class="card-header bg-info text-dark text-center p-4 border-bottom border-2 shadow-sm">My Profile</h2>
+  <div class="container my-3">
+    <img src="{{ profile.image.url }}" class="card-img-top w-25 rounded-circle border border-3 shadow-sm mx-auto my-2" alt="Profile Pic">
+    <div class="card-body">
+      <h5 class="card-title fs-2">{{ profile.user.get_full_name }}</h5>
+      <blockquote class="card-text fs-4 my-2 p-3"><i>{{ profile.quote }}</i></blockquote>
+      <a href="{% url 'edit-profile' %}" class="btn btn-info fs-4">Edit Profile</a>
+    </div>
   </div>
 </div>
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+{% block profile_details %}
+{% for profile in profiles %}
+{% if profile.user == user %}
+<div class="container p-0 pe-3 mt-4 bg-white rounded shadow-sm" style="max-width:65vw;">
+  <h3 class="card-header bg-info text-center p-3 w-50 rounded-bottom rounded-3 shadow-sm">
+    Profile Details
+  </h3>
+  <div class="container-fluid d-flex flex-row flex-wrap py-3">
+    <h4 class="w-50 text-center p-3">First Name :</h4>
+    <h4 class="w-50 text-center p-3 bg-light mb-3">{{ profile.user.first_name }}</h4>
+    <h4 class="w-50 text-center p-3">Last Name :</h4>
+    <h4 class="w-50 text-center p-3 bg-light mb-3">{{ profile.user.last_name }}</h4>
+    <h4 class="w-50 text-center p-3">Date Created :</h4>
+    <h4 class="w-50 text-center p-3 bg-light mb-3 fs-5">{{ profile.user.date_joined }}</h4>
+    <h4 class="w-50 text-center p-3">Email :</h4>
+    <h4 class="w-50 text-center p-3 bg-light fs-5">{{ profile.user.email }}</h4>
+    <h4 class="w-50 text-center p-3">Username :</h4>
+    <h4 class="w-50 text-center p-3 bg-light fs-5">{{ profile.user.username }}</h4>
+  </div>
+</div>
+
+{% endif %}
+{% endfor %}
 {% endblock %}
