@@ -52,10 +52,5 @@ def delete_task(request, id):
   
   
 @login_required
-def about(request):
-  return render(request, 'about.html')
-  
-  
-@login_required
 def profile(request):
   return render(request, 'profile.html')

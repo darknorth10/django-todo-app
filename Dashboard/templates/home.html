@@ -10,7 +10,7 @@
       <small class="card-header bg-dark text-light text-start">{{ post.date_created }}</small>
       <div class="card-body">
         <h5 class="card-title fs-3">{{ post.title }} </h5>
-        <p class="card-text">{{ post.content }}</p>
+        <p class="card-text border border-2 bg-light p-3">{{ post.content }}</p>
       <div class="card-footer d-flex justify-content-end bg-white border-top border-2">
         <a href="{% url 'update' post.id %}"><button type="button" class="btn btn-success px-4">Update</button></a>
         <a href="{% url 'delete' post.id %}"><button type="button" class="btn btn-danger mx-3 px-4">Delete</button></a>
