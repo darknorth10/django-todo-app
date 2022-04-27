@@ -60,9 +60,8 @@ def profile(request):
 
 
 # update Profile
-def update_profile(request, id):
-  obj = get_object_or_404(User, id = id)
-  user_form = UserUpdateForm(request.POST, instance=obj)
+def update_profile(request):
+  user_form = UserUpdateForm(request.POST, instance=request.user)
   profile_form = updateProfile(request.POST, request.FILES, instance=request.user.profile)
   if request.method == 'POST':
     
