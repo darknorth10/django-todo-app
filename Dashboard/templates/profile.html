@@ -6,7 +6,7 @@
 <div class="container border p-0">
   <h2 class="card-header bg-info text-dark text-center p-4 border-bottom border-2 shadow-sm">My Profile</h2>
   <div class="container my-3">
-    <img src="{{ profile.image.url }}" class="card-img-top w-25 rounded-circle border border-3 shadow-sm mx-auto my-2" alt="Profile Pic">
+    <img src="{{ profile.image.url }}" class="card-img-top w-25 rounded-circle border border-5 border-dark shadow mx-auto my-2 p-1" alt="Profile Pic" style="height: 150px;">
     <div class="card-body">
       <h5 class="card-title fs-2">{{ profile.user.get_full_name }}</h5>
       <blockquote class="card-text fs-4 my-2 p-3"><i>{{ profile.quote }}</i></blockquote>
